@@ -1,6 +1,5 @@
 import React from 'react';
 import { useState } from 'react';
-import './login.css';
 import { AuthProvider } from '../../api/AuthProvider'
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
@@ -43,13 +42,13 @@ export const Login = () => {
                         <h1 className='text-4xl'>Login</h1>
                         <div className='flex flex-col gap-1'>
                             <label htmlFor="email" >Email</label>
-                            <input type="email" name='email' value={email} onChange={handleInputChange} className='flex-grow border rounded p-1' id="email" aria-describedby="emailHelpId" placeholder="" />
+                            <input type="email" name='email' value={email} onChange={handleInputChange} className='flex-grow border rounded p-1' id="email" required autoComplete='email' />
                         </div>
                         <div className='flex flex-col gap-1 '>
                             <label htmlFor="password" >Password</label>
-                            <input type="password" name='password' value={password} onChange={handleInputChange} className='flex-grow border rounded p-1' id="password" placeholder="" />
+                            <input type="password" name='password' value={password} onChange={handleInputChange} className='flex-grow border rounded p-1' id="password" required autoComplete='password' />
                         </div>
-                        <button type="button" onClick={login} className="bg-orange-500 text-white rounded">Login</button>
+                        <button type="button" onClick={login} className="bg-orange-500 text-white rounded p-1 text-lg">Login</button>
                     </form>
                 </main>
                 <div className='hidden md:flex h-full w-full'>
