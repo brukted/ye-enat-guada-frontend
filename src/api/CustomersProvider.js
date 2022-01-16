@@ -1,8 +1,8 @@
 import { User } from './AuthProvider.js';
 
 let customers = [
-    new User(0, "John", "Doe", "asdas@gasd.asd", null, "https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200"),
-    new User(1, "Jane", "Doe", "asdas@gasd.asd", null, "https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200"),
+    new User(0, "John", "Doe", "asdas@gasd.asd", "0934354532", null, "https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200"),
+    new User(1, "Jane", "Doe", "asdas@gasd.asd", "34567435675", null, "https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200"),
 ]
 
 /**

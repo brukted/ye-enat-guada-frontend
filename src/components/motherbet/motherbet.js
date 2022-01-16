@@ -19,12 +19,11 @@ const MotherBetDetailsCard = ({ details }) => {
 }
 
 const QuantityInput = (props) => {
-
     return (
-        <div className="flex flex-row rounded overflow-clip">
-            <PlusIcon className="h-5 w-5 p-1 bg-orange-500 text-white " onClick={() => props.setQuantity(props.quantity + 1)} />
-            <input type="number" className="w-auto flex-grow-0 h-5 text-center outline-none border-t border-b" value={props.quantity} readOnly />
-            <MinusIcon className="h-5 w-5 p-1 bg-orange-500 text-white" onClick={() => props.setQuantity(props.quantity - 1)} />
+        <div className="flex flex-row rounded m-1">
+            <PlusIcon className="h-5 w-5 p-1 bg-orange-500 text-white rounded-tl rounded-bl" onClick={() => props.setQuantity(props.quantity + 1)} />
+            <input type="number" className=" flex-grow-0 h-5 text-center outline-none border-t border-b w-12" value={props.quantity} readOnly />
+            <MinusIcon className="h-5 w-5 p-1 bg-orange-500 text-white rounded-tr rounded-br" onClick={() => props.setQuantity(props.quantity - 1)} />
         </div>
     )
 }
@@ -48,6 +47,9 @@ const FoodCard = ({ food, cart, setCart }) => {
         }
         setCart(newCart)
     }
+
+    const rateFood = (rating) => { }
+
     return (
         <div className="flex flex-col gap-2 border rounded shadow-lg">
             <img className="aspect-video object-cover rounded-t" src={food.imageURL} alt={`preview of ${food.name}`} />
@@ -55,7 +57,7 @@ const FoodCard = ({ food, cart, setCart }) => {
                 <h1 className="text-xl">{food.name}</h1>
                 <p>{food.description}</p>
                 <p>${food.price}</p>
-                <Rating rating={Number(food.rating / 1)} isInteractive={false} />
+                <Rating rating={Number(food.rating / 1)} isInteractive={true} onRate={rateFood} />
                 <div className="self-end flex flex-row gap-1 items-center justify-center">
                     Qty :<QuantityInput quantity={getQuantity()} setQuantity={setQuantity} />
                 </div>

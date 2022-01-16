@@ -15,7 +15,7 @@ function DropDownMenu() {
         <Menu as="div" className="relative inline-block text-left">
             <div>
                 <Menu.Button className="bg-transparent">
-                    <img src="https://picsum.photos/200/300" className="aspect-square object-cover w-12 rounded-full" alt="profile" />
+                    <img src={AuthProvider.getUser().avatarURL} className="aspect-square object-cover w-12 rounded-full" alt="profile" />
                 </Menu.Button>
             </div>
 
@@ -31,6 +31,11 @@ function DropDownMenu() {
                 <Menu.Items className="origin-top-right absolute right-0 mt-0 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                     <div className="py-1">
                         <Menu.Item>
+                            <span className='text-gray-900 block px-4 py-2 text-sm'>
+                                {`Signed in as\n ${AuthProvider.getUser().email}`}
+                            </span>
+                        </Menu.Item>
+                        <Menu.Item>
                             {({ active }) => (
                                 <a
                                     href="#"
@@ -40,32 +45,6 @@ function DropDownMenu() {
                                     )}
                                 >
                                     Account settings
-                                </a>
-                            )}
-                        </Menu.Item>
-                        <Menu.Item>
-                            {({ active }) => (
-                                <a
-                                    href="#"
-                                    className={classNames(
-                                        active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                        'block px-4 py-2 text-sm'
-                                    )}
-                                >
-                                    Support
-                                </a>
-                            )}
-                        </Menu.Item>
-                        <Menu.Item>
-                            {({ active }) => (
-                                <a
-                                    href="#"
-                                    className={classNames(
-                                        active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                        'block px-4 py-2 text-sm'
-                                    )}
-                                >
-                                    License
                                 </a>
                             )}
                         </Menu.Item>

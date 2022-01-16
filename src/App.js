@@ -10,25 +10,12 @@ import { Login } from './components/login/login'
 import { MotherBet } from './components/motherbet/motherbet'
 import { RegisterAsCustomer, RegisterAsProvider } from './components/register/register'
 
-/* function CustomerRoute({ children }) {
-  return AuthProvider.isAuthenticated() ? (AuthProvider.getUser().role === UserRole.CUSTOMER ? children : <Navigate to="/error" />) : <Navigate to="/login" />;
-}
-
-function ProviderRoute({ children }) {
-  return AuthProvider.isAuthenticated() ? (AuthProvider.getUser().role === UserRole.PROVIDER ? children : <Navigate to="/error" />) : <Navigate to="/login" />;
-}
-
-function AdminRoute({ children }) {
-  return AuthProvider.isAuthenticated() ? (AuthProvider.getUser().role === UserRole.ADMIN ? children : <Navigate to="/error" />) : <Navigate to="/login" />;
-} */
-
 function PrivateRoute({ children }) {
   return AuthProvider.isAuthenticated() ? children : <Navigate to="/login" />;
 }
 
 function App() {
   const [cart, setCart] = useState({ items: [] })
-
   useEffect(() => {
     let savedCart = localStorage.getItem('cart')
     if (savedCart) {
@@ -51,28 +38,31 @@ function App() {
       <Route
         path="/"
         element={
-          AuthProvider.getUser().role === UserRole.CUSTOMER ?
-            <PrivateRoute>
-              <CustomerHome />
-            </PrivateRoute>
-            :
-            <PrivateRoute>
-              <ProviderHome />
-            </PrivateRoute>
+          AuthProvider.isAuthenticated() ?
+            AuthProvider.getUser().role === UserRole.CUSTOMER ?
+              <PrivateRoute>
+                <CustomerHome />
+              </PrivateRoute>
+              :
+              <PrivateRoute>
+                <ProviderHome />
+              </PrivateRoute> : <Navigate to="/login" />
         }
       />
       <Route path="/mother-bet/:id"
         element={
-          <PrivateRoute>
-            <MotherBet cart={cart} setCart={setCart} />
-          </PrivateRoute>
+          AuthProvider.isAuthenticated() ?
+            <PrivateRoute>
+              <MotherBet cart={cart} setCart={setCart} />
+            </PrivateRoute> : <Navigate to="/login" />
 
         } />
       <Route path="/cart"
         element={
-          <PrivateRoute>
-            <Cart cart={cart} setCart={setCart} />
-          </PrivateRoute>
+          AuthProvider.isAuthenticated() ?
+            <PrivateRoute>
+              <Cart cart={cart} setCart={setCart} />
+            </PrivateRoute> : <Navigate to="/login" />
 
         } />
       <Route path="/error" element={<ErrorPage />} />

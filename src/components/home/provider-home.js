@@ -1,7 +1,7 @@
 import { Menu, Transition } from "@headlessui/react";
 import React, { Fragment, useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthProvider } from "../../api/AuthProvider";
+import { AuthProvider, DJANGO_API_URL } from "../../api/AuthProvider.js";
 import { Tab } from "@headlessui/react";
 import * as OrdersProvider from "../../api/OrdersProvider.js";
 import * as CustomersProvider from "../../api/CustomersProvider.js";
@@ -9,18 +9,13 @@ import * as CustomersProvider from "../../api/CustomersProvider.js";
 function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
 }
-
 function DropDownMenu() {
-    const navigate = useNavigate();
+    const navigate = useNavigate()
     return (
         <Menu as="div" className="relative inline-block text-left">
             <div>
                 <Menu.Button className="bg-transparent">
-                    <img
-                        src="https://picsum.photos/200/300"
-                        className="aspect-square object-cover w-12 rounded-full"
-                        alt="profile"
-                    />
+                    <img src={AuthProvider.getUser().avatarURL} className="aspect-square object-cover w-12 rounded-full" alt="profile" />
                 </Menu.Button>
             </div>
 
@@ -36,12 +31,17 @@ function DropDownMenu() {
                 <Menu.Items className="origin-top-right absolute right-0 mt-0 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                     <div className="py-1">
                         <Menu.Item>
+                            <span className='text-gray-900 block px-4 py-2 text-sm'>
+                                {`Signed in as\n ${AuthProvider.getUser().email}`}
+                            </span>
+                        </Menu.Item>
+                        <Menu.Item>
                             {({ active }) => (
                                 <a
                                     href="#"
                                     className={classNames(
-                                        active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                                        "block px-4 py-2 text-sm"
+                                        active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                                        'block px-4 py-2 text-sm'
                                     )}
                                 >
                                     Account settings
@@ -50,42 +50,16 @@ function DropDownMenu() {
                         </Menu.Item>
                         <Menu.Item>
                             {({ active }) => (
-                                <a
-                                    href="#"
-                                    className={classNames(
-                                        active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                                        "block px-4 py-2 text-sm"
-                                    )}
-                                >
-                                    Support
-                                </a>
-                            )}
-                        </Menu.Item>
-                        <Menu.Item>
-                            {({ active }) => (
-                                <a
-                                    href="#"
-                                    className={classNames(
-                                        active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                                        "block px-4 py-2 text-sm"
-                                    )}
-                                >
-                                    License
-                                </a>
-                            )}
-                        </Menu.Item>
-                        <Menu.Item>
-                            {({ active }) => (
                                 <button
                                     type="button"
                                     className={classNames(
-                                        active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                                        "block w-full text-left px-4 py-2 text-sm"
+                                        active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                                        'block w-full text-left px-4 py-2 text-sm'
                                     )}
                                     onClick={() => {
                                         AuthProvider.logout().then(() => {
-                                            navigate("/login");
-                                        });
+                                            navigate("/login")
+                                        })
                                     }}
                                 >
                                     Sign out
@@ -96,7 +70,7 @@ function DropDownMenu() {
                 </Menu.Items>
             </Transition>
         </Menu>
-    );
+    )
 }
 
 const OrderDetails = ({ order, setOrders }) => {
