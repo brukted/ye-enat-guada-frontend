@@ -25,7 +25,7 @@ export const Login = () => {
         AuthProvider.login(username, password).then(() => {
             console.log("Login successful")
             console.log("Navigating to /")
-            naviagate("/")
+            window.location = "/"
         })
     }
     return (

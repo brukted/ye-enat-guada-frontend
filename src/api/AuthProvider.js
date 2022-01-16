@@ -28,8 +28,8 @@ export class User {
     }
 }
 
-const API_URL = "http://192.168.137.88:8000/api";
-export const DJANGO_API_URL = "http://192.168.137.88:8000";
+const API_URL = "http://localhost:8000/api";
+export const DJANGO_API_URL = "http://localhost:8000";
 
 export class AuthProvider {
     static getUser() {
