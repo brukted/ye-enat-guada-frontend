@@ -17,7 +17,10 @@ const CartItem = ({ item, cart, setCart }) => {
         quantity = Math.max(0, quantity)
         let newCart = { ...cart }
         newCart.items.find(i => i.food.id === item.food.id).quantity = quantity
-        newCart = newCart.items.filter(i => i.quantity !== 0)
+        newCart.items = newCart.items.filter(i => i.quantity !== 0)
+        if (newCart === undefined || newCart === null) {
+            newCart = { items: [] }
+        }
         setCart(newCart)
     }
     const removeItem = () => {

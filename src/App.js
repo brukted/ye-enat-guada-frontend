@@ -28,6 +28,7 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart))
+    console.log(`cart`, JSON.stringify(cart))
   }, [cart])
 
   return (

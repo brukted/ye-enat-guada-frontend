@@ -244,6 +244,14 @@ const Customers = () => {
     );
 };
 
+const Products = () => {
+    return (
+        <div>
+            <h1>Products</h1>
+        </div>
+    )
+};
+
 export const ProviderHome = () => {
     const [orders, setOrders] = useState([]);
     const [selectedOrder, setSelectedOrder] = useState(null);
@@ -294,6 +302,19 @@ export const ProviderHome = () => {
                         >
                             Customers
                         </Tab>
+                        <Tab
+                            className={({ selected }) =>
+                                classNames(
+                                    "w-full py-2.5 text-sm leading-5 font-medium text-orange-700 rounded-lg",
+                                    "focus:outline-none focus:ring-2 ring-offset-2 ring-offset-orange-400 ring-white ring-opacity-60",
+                                    selected
+                                        ? "bg-white shadow"
+                                        : "text-orange-100 hover:bg-white/[0.12] hover:text-white"
+                                )
+                            }
+                        >
+                            Products
+                        </Tab>
                     </Tab.List>
                     <Tab.Panels className="mt-2 h-full flex-grow">
                         <Tab.Panel className="h-full">
@@ -306,6 +327,9 @@ export const ProviderHome = () => {
                         </Tab.Panel>
                         <Tab.Panel>
                             <Customers />
+                        </Tab.Panel>
+                        <Tab.Panel>
+                            <Products />
                         </Tab.Panel>
                     </Tab.Panels>
                 </Tab.Group>
